@@ -74,8 +74,16 @@ Route::get('/listaDestinos', function(){
     ]           );
 });
 
+Route::get('/adminRegiones', function(){
+    $regiones = DB::table('regiones')
+                        ->select('regID', 'regNombre')
+                        ->get();
+    return view('adminRegiones',
+            ['regiones'=>$regiones]
+    );
+});
 
-
+Route::view('/agregarRegion', 'formAgregarRegion');
 
 
 
