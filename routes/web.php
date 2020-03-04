@@ -51,6 +51,8 @@ Route::post('/procesa', function(){
 ############################
 ### RAW SQL  ###############
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 Route::get('/listaRegiones', function(){
     $regiones = DB::select(
             'SELECT regID, regNombre
@@ -84,6 +86,17 @@ Route::get('/adminRegiones', function(){
 });
 
 Route::view('/agregarRegion', 'formAgregarRegion');
+
+Route::post('/agregarRegion', function(Request $request){
+    //$regNombre = $_POST['regNombre'];
+    $regNombre = $request->input('regNombre');
+    DB::table('regiones')
+            ->insert([
+                'regNombre'=>$regNombre
+            ]);
+    return redirect('/adminRegiones')
+                ->with('mensaje', 'Region: '.$regNombre.' agregada correctamente');
+});
 
 
 

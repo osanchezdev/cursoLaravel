@@ -7,15 +7,16 @@
     @section('main')
 
         <div class="alert bg-light p-3">
-            <form action="agregarRegion" method="post">
+            <form action="/agregarRegion" method="post">
                 Nombre de la región
                 <br>
                 <input type="text" name="regNombre" class="form-control" required>
+                @csrf
                 <br>
                 <a href="/adminRegiones" class="btn btn-outline-secondary">
                     Volver
                 </a>
-                <button class="btn btn-dark">Agregar Región</button>
+                <button class="btn btn-dark ml-3">Agregar Región</button>
             </form>
         </div>
 
